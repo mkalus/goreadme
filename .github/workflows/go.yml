@@ -27,9 +27,3 @@ jobs:
           args: release --rm-dist
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      -
-        name: Compress binaries
-        uses: svenstaro/upx-action@v2
-        with:
-          file: goreadme
