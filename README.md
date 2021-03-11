@@ -10,3 +10,10 @@ Other features:
 * Automatic code highlighting
 * Many md extensions activated
 
+Docker image is available:
+
+```bash
+docker pull ronix/goreadme
+```
+
+Images are available for amd64, arm64 and 386.
