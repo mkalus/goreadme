@@ -3,16 +3,23 @@ before:
     - go mod tidy
 builds:
   - env:
-      - CGO_ENABLED=0
+    - CGO_ENABLED=0
+    ldflags:
+      - -w -s
     goos:
+      - freebsd
       - linux
       - windows
       - darwin
     goarch:
       - amd64
       - arm64
-      - arm
       - 386
+
+    goarm:
+      - 6
+      - 7
+
 #    hooks:
 #      post:
 #        - upx "{{ .Path }}"
@@ -24,11 +31,11 @@ dockers:
     goarch: amd64
     goarm: ''
     image_templates:
-      - "docker.io/ronix/goreadme:latest"
-      - "docker.io/ronix/goreadme:{{ .Tag }}"
-      - "docker.io/ronix/goreadme:amd64-latest"
-      - "docker.io/ronix/goreadme:amd64-{{ .Tag }}"
-    skip_push: false
+      - "ronix/goreadme:latest"
+      - "ronix/goreadme:{{ .Tag }}"
+      - "ronix/goreadme:amd64-latest"
+      - "ronix/goreadme:amd64-{{ .Tag }}"
+    skip_push: true
     dockerfile: Dockerfile
     use_buildx: true
     build_flag_templates:
@@ -38,9 +45,9 @@ dockers:
     goarch: arm64
     goarm: ''
     image_templates:
-      - "docker.io/ronix/goreadme:arm64-latest"
-      - "docker.io/ronix/goreadme:arm64-{{ .Tag }}"
-    skip_push: false
+      - "ronix/goreadme:arm64-latest"
+      - "ronix/goreadme:arm64-{{ .Tag }}"
+    skip_push: true
     dockerfile: Dockerfile
     use_buildx: true
     build_flag_templates:
@@ -50,9 +57,9 @@ dockers:
     goarch: 386
     goarm: ''
     image_templates:
-      - "docker.io/ronix/goreadme:386-latest"
-      - "docker.io/ronix/goreadme:386-{{ .Tag }}"
-    skip_push: false
+      - "ronix/goreadme:386-latest"
+      - "ronix/goreadme:386-{{ .Tag }}"
+    skip_push: true
     dockerfile: Dockerfile
     use_buildx: true
     build_flag_templates:
