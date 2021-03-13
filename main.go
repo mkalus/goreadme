@@ -2,6 +2,7 @@ package main
 
 import (
 	_ "embed"
+	"flag"
 	"fmt"
 	"github.com/Depado/bfchroma"
 	bf "github.com/russross/blackfriday/v2"
@@ -17,14 +18,29 @@ import (
 //go:embed md.css
 var css []byte
 
-// TODO make this configurable in the future
+// variables set by flags
 var index string
+var sourcePath string
+var serverAddress string
+var help bool
 
+// initialize flags
 func init() {
-	index = "README.md"
+	flag.StringVar(&index, "index", "README.md", "index file")
+	flag.StringVar(&sourcePath, "source", ".", "source path (relative or absolute")
+	flag.StringVar(&serverAddress, "address", ":8080", "server address to listen to")
+	flag.BoolVar(&help, "help", false, "print help")
+	flag.BoolVar(&help, "h", false, "print help (shorthand)")
+	flag.Parse()
 }
 
 func main() {
+	// just print help and exit
+	if help {
+		flag.PrintDefaults()
+		return
+	}
+
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		path := r.URL.Path
 		// remove starting slash
@@ -42,6 +58,9 @@ func main() {
 			_, _ = w.Write(css)
 			return
 		}
+
+		// add source path
+		path = filepath.Join(sourcePath, path)
 
 		// find file
 		info, err := os.Stat(path)
@@ -88,7 +107,7 @@ func main() {
 		http.ServeFile(w, r, path)
 	})
 
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Fatal(http.ListenAndServe(serverAddress, nil))
 }
 
 // Defines the extensions that are used
