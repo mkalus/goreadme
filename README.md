@@ -10,6 +10,15 @@ Other features:
 * Automatic code highlighting
 * Many md extensions activated
 
+## Parameters
+
+* `--help` or `-h`: print help
+* `--index`: Define index file (default: `README.md`)
+* `--source`: Source path, may be realtive or absolute (default: `.`)
+* `--address`: Address to listen to (default `:8080`)
+
+## Docker
+
 Docker image is available:
 
 ```bash
