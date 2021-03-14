@@ -24,6 +24,11 @@ var sourcePath string
 var serverAddress string
 var help bool
 
+// set by goreleaser
+var version = "snapshot"
+var commit = "unknown"
+var date = "unknown"
+
 // initialize flags
 func init() {
 	flag.StringVar(&index, "index", "README.md", "index file")
@@ -34,9 +39,22 @@ func init() {
 	flag.Parse()
 }
 
+func printHeader() {
+	// shorten commit
+	if len(commit) > 7 {
+		commit = commit[0:8]
+	}
+
+	println("goreadme - Very simple README.md viewer written in go")
+	println("Version: " + version + ", commit: " + commit + ", built at " + date)
+}
+
 func main() {
+	printHeader()
+
 	// just print help and exit
 	if help {
+		println()
 		flag.PrintDefaults()
 		return
 	}
