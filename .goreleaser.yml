@@ -38,10 +38,10 @@ dockers:
     goarch: amd64
     goarm: ''
     image_templates:
-      - "ronix/goreadme:latest"
-      - "ronix/goreadme:{{ .Tag }}"
-      - "ronix/goreadme:amd64-latest"
-      - "ronix/goreadme:amd64-{{ .Tag }}"
+      - "docker.io/ronix/goreadme:latest"
+      - "docker.io/ronix/goreadme:{{ .Tag }}"
+      - "docker.io/ronix/goreadme:amd64-latest"
+      - "docker.io/ronix/goreadme:amd64-{{ .Tag }}"
     skip_push: false
     dockerfile: Dockerfile
     use_buildx: true
@@ -52,8 +52,8 @@ dockers:
     goarch: arm64
     goarm: ''
     image_templates:
-      - "ronix/goreadme:arm64-latest"
-      - "ronix/goreadme:arm64-{{ .Tag }}"
+      - "docker.io/ronix/goreadme:arm64-latest"
+      - "docker.io/ronix/goreadme:arm64-{{ .Tag }}"
     skip_push: false
     dockerfile: Dockerfile
     use_buildx: true
@@ -64,8 +64,8 @@ dockers:
     goarch: 386
     goarm: ''
     image_templates:
-      - "ronix/goreadme:386-latest"
-      - "ronix/goreadme:386-{{ .Tag }}"
+      - "docker.io/ronix/goreadme:386-latest"
+      - "docker.io/ronix/goreadme:386-{{ .Tag }}"
     skip_push: false
     dockerfile: Dockerfile
     use_buildx: true
