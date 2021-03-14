@@ -90,7 +90,7 @@ func main() {
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>`+html.EscapeString(path)+`</title>
-  <link rel="stylesheet" href="./md.css">
+  <link rel="stylesheet" href="/md.css">
 </head>
 <body><div class="container">
 `)
