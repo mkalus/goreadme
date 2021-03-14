@@ -42,7 +42,7 @@ dockers:
       - "ronix/goreadme:{{ .Tag }}"
       - "ronix/goreadme:amd64-latest"
       - "ronix/goreadme:amd64-{{ .Tag }}"
-    skip_push: true
+    skip_push: false
     dockerfile: Dockerfile
     use_buildx: true
     build_flag_templates:
@@ -54,7 +54,7 @@ dockers:
     image_templates:
       - "ronix/goreadme:arm64-latest"
       - "ronix/goreadme:arm64-{{ .Tag }}"
-    skip_push: true
+    skip_push: false
     dockerfile: Dockerfile
     use_buildx: true
     build_flag_templates:
@@ -66,7 +66,7 @@ dockers:
     image_templates:
       - "ronix/goreadme:386-latest"
       - "ronix/goreadme:386-{{ .Tag }}"
-    skip_push: true
+    skip_push: false
     dockerfile: Dockerfile
     use_buildx: true
     build_flag_templates:
