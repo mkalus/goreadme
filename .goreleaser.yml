@@ -6,21 +6,30 @@ builds:
     - CGO_ENABLED=0
     goos:
       - freebsd
-      - linux
-      - windows
-      - darwin
     goarch:
       - amd64
       - arm64
       - 386
+      - arm
 
     goarm:
       - 6
       - 7
 
-#    hooks:
-#      post:
-#        - upx "{{ .Path }}"
+  -
+    id: "with-upx"
+    targets:
+      - "linux_amd64"
+      - "linux_arm64"
+      - "linux_arm_6"
+      - "linux_arm_7"
+      - "linux_386"
+      - "darwin_amd64"
+      - "windows_386"
+      - "windows_amd64"
+    hooks:
+      post:
+        - upx "{{ .Path }}"
 checksum:
   name_template: 'checksums.txt'
 dockers:
