@@ -31,6 +31,8 @@ Images are available for amd64, arm64 and 386.
 
 ## Snap
 
+[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-white.svg)](https://snapcraft.io/goreadme)
+
 Snaps are available, too. Install using:
 
 ```bash
