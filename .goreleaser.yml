@@ -73,7 +73,7 @@ dockers:
       - "--platform=linux/386"
 snapcrafts:
   -
-    name: mkalus-goreadme
+    name: goreadme
     publish: true
     summary: Very simple README.md viewer/web server written in go
     description: |
@@ -83,4 +83,5 @@ snapcrafts:
     base: core18
     apps:
       goreadme:
-        command: bin/goreadme
+        command: goreadme
+        plugs: [network-bind, home]

@@ -1,4 +1,4 @@
-name: mkalus-goreadme
+name: goreadme
 base: core18
 version: git
 summary: Very simple README.md viewer/web server written in go
@@ -20,4 +20,5 @@ parts:
 apps:
   goreadme:
     command: bin/goreadme
+    plugs: [network-bind, home]
 

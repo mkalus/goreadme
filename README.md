@@ -28,3 +28,15 @@ docker pull ronix/goreadme
 ```
 
 Images are available for amd64, arm64 and 386.
+
+## Snap
+
+Snaps are available, too. Install using:
+
+```bash
+sudo snap install goreadme
+```
+
+**Note:** Due to snap security restrictions, goreadme snap can only access files in the user's home folder, so make sure
+the binary runs with proper permissions. Otherwise you will get http 500 errors and the log will show access denied
+entries.
