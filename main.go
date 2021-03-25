@@ -23,6 +23,8 @@ var index string
 var sourcePath string
 var serverAddress string
 var help bool
+var logging bool
+var quiet bool
 
 // set by goreleaser
 var version = "snapshot"
@@ -34,7 +36,9 @@ func init() {
 	flag.StringVar(&index, "index", "README.md", "index file")
 	flag.StringVar(&sourcePath, "source", ".", "source path (relative or absolute")
 	flag.StringVar(&serverAddress, "address", ":8080", "server address to listen to")
-	flag.BoolVar(&help, "help", false, "print help")
+	flag.BoolVar(&logging, "logging", true, "turn logging on or off")
+	flag.BoolVar(&quiet, "quiet", false, "do not print header when starting program")
+	flag.BoolVar(&help, "h", false, "print help (shorthand)")
 	flag.BoolVar(&help, "h", false, "print help (shorthand)")
 	flag.Parse()
 }
@@ -50,7 +54,13 @@ func printHeader() {
 }
 
 func main() {
-	printHeader()
+	if !quiet {
+		printHeader()
+	}
+
+	if logging {
+		log.Printf("Starting server at address: %s", serverAddress)
+	}
 
 	// just print help and exit
 	if help {
@@ -83,10 +93,23 @@ func main() {
 		// find file
 		info, err := os.Stat(path)
 		if os.IsNotExist(err) {
+			if logging {
+				log.Printf("404: %s does not exist", path)
+			}
 			handleHTTPError(w, 404)
 			return
 		}
-		if err != nil || info.IsDir() {
+		if err != nil {
+			if logging {
+				log.Printf("500: file error occurred: %s", err)
+			}
+			handleHTTPError(w, 500)
+			return
+		}
+		if info.IsDir() {
+			if logging {
+				log.Printf("500: %s is a path", path)
+			}
 			handleHTTPError(w, 500)
 			return
 		}
@@ -96,6 +119,9 @@ func main() {
 		if extension == ".md" {
 			data, err := ioutil.ReadFile(path)
 			if err != nil {
+				if logging {
+					log.Printf("500: read error occurred: %s", err)
+				}
 				handleHTTPError(w, 500)
 				return
 			}
@@ -118,11 +144,17 @@ func main() {
 
 			_, _ = fmt.Fprint(w, `</div></body></html>
 `)
+			if logging {
+				log.Printf("200: markdown: %s", path)
+			}
 			return
 		}
 
 		// serve other files
 		http.ServeFile(w, r, path)
+		if logging {
+			log.Printf("200: served: %s", path)
+		}
 	})
 
 	log.Fatal(http.ListenAndServe(serverAddress, nil))

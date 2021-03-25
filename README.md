@@ -12,10 +12,12 @@ Other features:
 
 ## Parameters
 
-* `--help` or `-h`: print help
-* `--index`: Define index file (default: `README.md`)
-* `--source`: Source path, may be realtive or absolute (default: `.`)
-* `--address`: Address to listen to (default `:8080`)
+* `-help` or `-h`: print help
+* `-index`: Define index file (default: `README.md`)
+* `-source`: Source path, may be realtive or absolute (default: `.`)
+* `-address`: Address to listen to (default `:8080`)
+* `-logging`: Turn logging on or off (default `true`)
+* `-quiet`: Do not print header when starting goreadme
 
 ## Docker
 
