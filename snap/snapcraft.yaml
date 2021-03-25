@@ -1,0 +1,23 @@
+name: mkalus-goreadme
+base: core18
+version: git
+summary: Very simple README.md viewer/web server written in go
+description: |
+  This is a very simple web server to view markdown files.
+  Just start binary in a folder containing a README.md file and be set.
+
+grade: devel # must be 'stable' to release into candidate/stable channels
+confinement: devmode # use 'strict' once you have the right plugs and slots
+
+parts:
+  goreadme:
+    plugin: go
+    go-importpath: github.com/mkalus/goreadme
+    source: .
+    source-type: git
+    build-packages:
+      - gcc
+apps:
+  goreadme:
+    command: bin/goreadme
+

@@ -71,3 +71,16 @@ dockers:
     use_buildx: true
     build_flag_templates:
       - "--platform=linux/386"
+snapcrafts:
+  -
+    name: mkalus-goreadme
+    publish: true
+    summary: Very simple README.md viewer/web server written in go
+    description: |
+      This is a very simple web server to view markdown files.
+      Just start binary in a folder containing a README.md file and be set.
+    license: MIT
+    base: core18
+    apps:
+      goreadme:
+        command: bin/goreadme
