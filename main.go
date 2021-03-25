@@ -38,7 +38,7 @@ func init() {
 	flag.StringVar(&serverAddress, "address", ":8080", "server address to listen to")
 	flag.BoolVar(&logging, "logging", true, "turn logging on or off")
 	flag.BoolVar(&quiet, "quiet", false, "do not print header when starting program")
-	flag.BoolVar(&help, "h", false, "print help (shorthand)")
+	flag.BoolVar(&help, "help", false, "print help")
 	flag.BoolVar(&help, "h", false, "print help (shorthand)")
 	flag.Parse()
 }
